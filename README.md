@@ -1,2 +1,2 @@
 # veeammaclogparse
-Veeam Agent for Mac Log Pars
+Veeam Agent for Mac Log Parse

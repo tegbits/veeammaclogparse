@@ -1,5 +1,6 @@
-from helper import target_date
+from constant.constansEnum import TARGET_DATE
 
+# Converts data to plain text format for the email body
 def convertDataToText(data):
     result = ""
     for entry in data:
@@ -12,6 +13,8 @@ def convertDataToText(data):
             result += f"  {status}\n"
         result += "\n"
     return result
+
+# Converts data to HTML format for the email body
 def convertDataToBody(data):
     result = ""
     for entry in data:
@@ -21,13 +24,14 @@ def convertDataToBody(data):
         warns = entry.get('WARN', [])
         errors = entry.get('Error', [])
         
+        # Generate HTML content for status, warnings, warns, and errors
         status_html = ''.join([f"<h3>{s}</h3>" for s in status])
         warnings_html = ''.join([f"<li style='padding-top: 5px;'>{w}</li>" for w in warnings])
         warns_html = ''.join([f"<li style='padding-top: 5px;'>{w}</li>" for w in warns])
         errors_html = ''.join([f"<li style='padding-top: 5px;'>{e}</li>" for e in errors])
         
-        if status_html or warnings_html or warns_html or errors_html:
-            result += f"""
+        # Combine all HTML content
+        result += f"""
                 <html>
                     <head></head>
                     <body style="padding: 25px;">
@@ -39,31 +43,32 @@ def convertDataToBody(data):
                     </body>
                 </html>
             """
-    
+            
     return result
 
+# Converts error information to HTML format for the email body
 def convertErrorToBody(err):
-    errInfo = err['msg'] if ('msg' in err) else ''
-    errTitle = err['title'] if ('title' in err) else ''
+    errInfo = err.get('msg','')
+    errTitle = err.get('title','')
     return f"""\
 <html>
     <head></head>
     <body style="padding: 25px;">
         <h1 style="color: #ff6900;">Error</h1>
-        {f'<h2>{errTitle}</h2>' if len(errTitle) > 1 else ''}
-        {f'<div>{errInfo}</div>' if len(errInfo) > 1 else ''}
-        
+        {errInfo and f'<h2>{errTitle}</h2>'}
+        {errInfo and f'<div>{errInfo}</div>'}
     </body>
 </html>
 """
 
+# Dictionary mapping template types to their corresponding subject and HTML generation functions
 templateInfo = {
     'JOBSTATUS': {
-        'subject': f'JOB STATUS IN {target_date}',
+        'subject': f'JOB STATUS IN {TARGET_DATE}',
         'html': convertDataToBody
     },
     'ERROR': {
-        'subject': f'FAIL IN PROGGRAM {target_date}',
+        'subject': f'FAIL IN PROGRAM {TARGET_DATE}',
         'html': convertErrorToBody
     }
 }

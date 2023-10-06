@@ -30,3 +30,6 @@ This will run the script `main.py` at 18:31 every day. The output will be logged
 
 ---
 
+## Certificate verify failed(MAC OS ONLY)
+
+https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org[https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org]

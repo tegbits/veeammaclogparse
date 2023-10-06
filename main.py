@@ -9,7 +9,7 @@ from constant.config.configEnum import SENDER_EMAIL
 
 def mainFn ():
     # Initialize an empty list to store paths
-    arrPath = []
+    arrPath = {}
     # Get directories and populate arrPath
     getDirectory(arrPath)
     if not arrPath:
@@ -20,6 +20,7 @@ def mainFn ():
         return
     # Get log data from all found path
     data = getLogInfo(arrPath)
+    print(arrPath)
     
     if not data:
         # If log file is empty, send an error email and print an error message

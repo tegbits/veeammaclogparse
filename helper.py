@@ -10,35 +10,22 @@ def getDirectory(arr, newPath = False):
     # Create a list to store the content of the current directory
     content = []
     if (not(newPath)):
-        # Iterate through all files and directories in the current directory
-        for file in os.scandir():
-            if (os.path.isdir(file)):
-                if (not(re.findall(PATTERN_DIR, file.name))):
-                    # Add the path again in function if it doesn't have a pattern
-                    content.append(file.name)
-                if (re.findall(PATTERN_DATE, file.name)):
-                    # Add the full path to the object if the required directory is found
-                    resPath = os.path.join(newPath, file.name)
-                    nameFolder = os.path.basename(newPath)
-                    if (not(nameFolder in arr)):
-                        arr[nameFolder] = [resPath]
-                        continue
-                    arr[nameFolder].append(resPath)
         # If no path was provided, set it to the default path
         newPath = DEFAULT_START_PATH
-    else:
-        # Similar logic for the specified path
-        for file in os.scandir(newPath):
-            if (os.path.isdir(file)):
-                if (not(re.findall(PATTERN_DIR, file.name))):
-                    content.append(file.name)
-                if (re.findall(PATTERN_DATE, file.name)):
-                    resPath = os.path.join(newPath, file.name)
-                    nameFolder = os.path.basename(newPath)
-                    if (not(nameFolder in arr)):
-                        arr[nameFolder] = [resPath]
-                        continue
-                    arr[nameFolder].append(resPath)
+    # Iterate through all files and directories in the current directory
+    for file in os.scandir(newPath):
+        if (os.path.isdir(file)):
+            if (not(re.findall(PATTERN_DIR, file.name))):
+                # Add the path again in function if it doesn't have a pattern
+                content.append(file.name)
+            if (re.findall(PATTERN_DATE, file.name)):
+                    # Add the full path to the object if the required directory is found
+                resPath = os.path.join(newPath, file.name)
+                nameFolder = os.path.basename(newPath)
+                if (not(nameFolder in arr)):
+                    arr[nameFolder] = [resPath]
+                    continue
+                arr[nameFolder].append(resPath)
     if content:
         # Recursive call to the function for subdirectories because folders don't have a pattern
         for path in content:

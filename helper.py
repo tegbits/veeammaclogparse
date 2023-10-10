@@ -1,5 +1,6 @@
 import os
 import re
+import urllib.request
 
 from constant.regexEnum import PATTERN_DIR, PATTERN_DATE
 from constant.constansEnum import TARGET_FILE, DEFAULT_START_PATH
@@ -84,3 +85,8 @@ def getLogInfo (arr):
                         break
     return log
     
+
+def getHostInfo():
+    hostName = os.uname().nodename
+    hostIp = urllib.request.urlopen('https://ident.me').read().decode('utf-8')
+    return hostName, hostIp

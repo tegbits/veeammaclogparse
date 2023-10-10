@@ -1,5 +1,8 @@
 from constant.constansEnum import TARGET_DATE
+from helper import getHostInfo
 
+
+hostInfo = getHostInfo()
 # Converts data to plain text format for the email body
 def convertDataToText(data):
     result = ""
@@ -35,6 +38,7 @@ def convertDataToBody(data):
                 <html>
                     <head></head>
                     <body style="padding: 25px;">
+                        <h1>HostName: {hostInfo[0]} HostIP: {hostInfo[1]}</h1>
                         <h1>Name: {name}</h1>
                         {status_html and f'<h2>Status:</h2><div>{status_html}</div>'}
                         {warnings_html and f'<h2 style="color: #ff6900;">Warnings({len(warnings)}):</h2><ul>{warnings_html}</ul>'}
@@ -53,6 +57,7 @@ def convertErrorToBody(err):
     return f"""\
 <html>
     <head></head>
+    <h1>HostName: {hostInfo[0]} HostIP: {hostInfo[1]}</h1>
     <body style="padding: 25px;">
         <h1 style="color: #ff6900;">Error</h1>
         {errInfo and f'<h2>{errTitle}</h2>'}

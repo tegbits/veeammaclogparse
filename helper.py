@@ -1,11 +1,9 @@
-import os
-import re
-import urllib.request
+import os, socket, re, urllib.request
 
 from constant.regexEnum import PATTERN_DIR, PATTERN_DATE
 from constant.constansEnum import TARGET_FILE, DEFAULT_START_PATH
 from constant.config.configEnum import TYPE_INFO
-from constant.informationTypeEnum import FULL_TYPE, SHORT_TYPE, STATUS_TYPE, WARNING_TYPE, WARN_TYPE , ERROR_TYPE
+from constant.informationTypeEnum import FULL_TYPE, SHORT_TYPE, STATUS_TYPE, WARNING_TYPE, WARN_TYPE , ERROR_TYPE, ALL_TYPE
 
 def getDirectory(arr, newPath = False):
     # Create a list to store the content of the current directory
@@ -41,6 +39,7 @@ def getLogInfo (arr):
         for currentPath in arr[key]:
             with os.scandir(currentPath) as files:
                 for file in files:
+
                     if (file.name.capitalize() == TARGET_FILE):
                         with open(os.path.join(currentPath, file.name), 'r', encoding="utf8") as fileData:
                             name = key if not(counter) else f'{key}({counter + 1})'
@@ -67,12 +66,14 @@ def getLogInfo (arr):
                                 for str in logInfo:
                                     if (STATUS_TYPE in TYPE_INFO and re.findall(r'JOB STATUS', str)):
                                         logStatus.append(str);
-                                    if (WARNING_TYPE in TYPE_INFO and re.findall(r'\[warn\]', str)):
+                                    elif (WARNING_TYPE in TYPE_INFO and re.findall(r'\[warn\]', str)):
                                         logWarning.append(str);
-                                    if (WARN_TYPE in TYPE_INFO and re.findall(r'WARN', str)):
+                                    elif (WARN_TYPE in TYPE_INFO and re.findall(r'WARN', str)):
                                         logWARN.append(str)
-                                    if (ERROR_TYPE in TYPE_INFO and re.findall(r'ERR', str)):
+                                    elif (ERROR_TYPE in TYPE_INFO and re.findall(r'ERR', str)):
                                         logError.append(str)
+                                    else:
+                                        raise ValueError(F'INCORRECT TYPE_INFO: {",".join(TYPE_INFO)} Please change .env file')
                             # Add formatted information to the log list
                             log.append({
                                 'name': name,
@@ -85,8 +86,8 @@ def getLogInfo (arr):
                         break
     return log
     
-
+# Get information to the hostname and hostip
 def getHostInfo():
-    hostName = os.uname().nodename
+    hostName = socket.gethostname()
     hostIp = urllib.request.urlopen('https://ident.me').read().decode('utf-8')
     return hostName, hostIp

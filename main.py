@@ -20,6 +20,7 @@ def mainFn ():
         return
     # Get log data from all found path
     data = getLogInfo(arrPath)
+    print(arrPath)
     
     if not data:
         # If log file is empty, send an error email and print an error message

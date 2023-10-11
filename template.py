@@ -1,4 +1,3 @@
-from constant.constansEnum import TARGET_DATE
 from helper import getHostInfo
 
 
@@ -66,14 +65,19 @@ def convertErrorToBody(err):
 </html>
 """
 
+def getTitle (title):
+    return f'Veeam MacAgent Backup Report: {title}'
+
 # Dictionary mapping template types to their corresponding subject and HTML generation functions
 templateInfo = {
     'JOBSTATUS': {
-        'subject': f'JOB STATUS IN {TARGET_DATE}',
+        'subject': getTitle,
         'html': convertDataToBody
     },
     'ERROR': {
-        'subject': f'FAIL IN PROGRAM {TARGET_DATE}',
+        'subject': f'Veeam MacAgent Backup Report: FAIL IN PROGRAM',
         'html': convertErrorToBody
     }
 }
+
+

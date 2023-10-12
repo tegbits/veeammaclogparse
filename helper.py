@@ -49,7 +49,7 @@ def getLogInfo (arr):
                                 # Processing for FULL information type
                                 for str in logInfo:
                                     if (re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
+                                        logStatus.append(extractJobStatus(str));
                                     if (re.findall(r'\[warn\]', str)):
                                         logWarning.append(str);
                                     if (re.findall(r'WARN', str)):
@@ -85,6 +85,10 @@ def getLogInfo (arr):
                         counter += 1
                         break
     return log
+
+def extractJobStatus(str):
+    match = re.search(r'JOB STATUS: (\w+)', str)
+    return match.group(1).capitalize() if match else None
     
 # Get information to the hostname and hostip
 def getHostInfo():

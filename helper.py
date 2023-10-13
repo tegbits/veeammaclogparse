@@ -3,7 +3,7 @@ import os, socket, re, urllib.request
 from constant.regexEnum import PATTERN_DIR, PATTERN_DATE
 from constant.constansEnum import TARGET_FILE, DEFAULT_START_PATH
 from constant.config.configEnum import TYPE_INFO
-from constant.informationTypeEnum import FULL_TYPE, SHORT_TYPE, STATUS_TYPE, WARNING_TYPE, WARN_TYPE , ERROR_TYPE, ALL_TYPE
+from constant.informationTypeEnum import FULL_TYPE, SHORT_TYPE, STATUS_TYPE, WARNING_TYPE, WARN_TYPE , ERROR_TYPE
 
 def getDirectory(arr, newPath = False):
     # Create a list to store the content of the current directory

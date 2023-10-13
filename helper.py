@@ -60,12 +60,12 @@ def getLogInfo (arr):
                                 # Processing for SHORT information type
                                 for str in logInfo:
                                     if (re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
+                                        logStatus.append(extractJobStatus(str));
                             else:
                                 # Processing for other information type
                                 for str in logInfo:
                                     if (STATUS_TYPE in TYPE_INFO and re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
+                                        logStatus.append(extractJobStatus(str));
                                     elif (WARNING_TYPE in TYPE_INFO and re.findall(r'\[warn\]', str)):
                                         logWarning.append(str);
                                     elif (WARN_TYPE in TYPE_INFO and re.findall(r'WARN', str)):

@@ -1,0 +1,76 @@
+Received: from a1i1022.smtp2go.com (a1i1022.smtp2go.com [43.228.187.254]) by
+ 181260e46e5e with SMTP id <undefined> (version=TLS1.3,
+ cipher=TLS_AES_128_GCM_SHA256); Tue, 17 Oct 2023 23:48:36 GMT
+X-Envelope-From: bT.jni4goue30=hlpmyvn7ni0d=xk818y5nth@em641386.tbitspecialists.com
+X-Mailgun-Incoming: Yes
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=smtpservice.net; s=mdqwa1.a1-4.dyn; x=1697587416; h=Feedback-ID:
+	X-Smtpcorp-Track:Date:Message-Id:Subject:To:From:Reply-To:Sender:
+	List-Unsubscribe; bh=6WM/Wfg+6mLXwhwi0W+8MNv09b81jlCkkH4m2c/3C5w=; b=Loj3d6Fu
+	/9342TxFIGHZGmpnYGC/nNHPu94QNc4bW7TO8t/7RLU44GVGJKWxrf7a5huvaRiY24rRCZ60Tx7/I
+	LcTANXfLCVY1MAsJp4WCy49tkWzDY/rxP1nOMwJGsyT0+6fWp4lEieTcOr7/LQi4Z3Z7Tgy8BbYsw
+	mlcInzCI4HI2pa5Y6bnXRAekVfLu27l5VZz6AL6Mtw/ZylFu0o8mNys/rP/1Uh3Q4LaPT1JUpta/b
+	tBrIS4UXfLrviucHQOH1VvpOzfCRA73s/Y/RjVpixUCeAj9fce4rKDFFxZ1iuPXAMknJ/bXMkd7lI
+	uhcU26l+lcgNt1DE5O4ggB3a9w==;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=tbitspecialists.com; i=@tbitspecialists.com; q=dns/txt; s=s641386;
+ t=1697586515; h=from : subject : to : message-id : date;
+ bh=6WM/Wfg+6mLXwhwi0W+8MNv09b81jlCkkH4m2c/3C5w=;
+ b=Wf0WuRavXIfvIhkPoc6MVp0TyEGnN06Ngy8meNYouAUYpM2r8k99/+GQZRqYJfLyVCien
+ /Hlu9/uTwrU4jDYj5+cztvDBl9PBEeJaoa69zD0jCJHPFK85PLFukR7z0/X2iPx6Tfoqlup
+ SAE4GTMrgj9lnUUuYLYGCgGt2RENUlAaKZ4LckUjw2W3bC+kSOd1mX6EbubCrWNzkA0Y3hf
+ 06IwdvuOZ5zp0ThSZXlzgQpOYZ3KCzVMDZLcStStaeeUzUOlxHOXz/oOOIkLQQ2tKzka2dP
+ 83vFAmHdJxGDLoZfkrqERFwjoNlwe5cdXotVGlku7T9GkgK9ZHApdzIoC7rg==
+Received: from [10.45.79.114] (helo=SmtpCorp) by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.94.2-S2G) (envelope-from <veeamtest@tbitspecialists.com>)
+ id 1qstnf-l1jjy0-8X
+ for shuttlesites@us.backupradar.com; Tue, 17 Oct 2023 23:48:35 +0000
+Received: from [10.19.241.156]
+ (helo=1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa)
+ by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+ (Exim 4.96.1-S2G) (envelope-from <veeamtest@tbitspecialists.com>)
+ id 1qstne-g2w9OG-1w for shuttlesites@us.backupradar.com;
+ Tue, 17 Oct 2023 23:48:34 +0000
+Content-Type: multipart/alternative;
+ boundary="===============4710282437277442150=="
+MIME-Version: 1.0
+From: veeamtest@tbitspecialists.com
+To: shuttlesites@us.backupradar.com
+Cc: 
+Subject: Backup Report Veeam MacAgent: HourlyBackup
+Message-Id: <E1qstne-g2w9OG-1w@message-id.smtpcorp.com>
+Date: Tue, 17 Oct 2023 23:48:34 +0000
+X-Smtpcorp-Track: 1qstn-g2w9OG1w.Lh1TJtQ459H1k
+Feedback-ID: 641386m:641386aKmydtf:641386sHqDtMT7jq
+X-Report-Abuse: Please forward a copy of this message, including all headers,
+ to <abuse-report@smtp2go.com>
+
+--===============4710282437277442150==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+                <html>
+                    <head></head>
+                    <body>
+                        <h3>Device: tbits-macpro01.local</h3>
+                        <h3>Success: Success</h3>
+                        <h3>Job: Daily Backup</h3>
+                        <h3>Company: TBITS IT Specialists</h3>
+                        <h3>Warning: True</h3>
+                        <h3>Error: False</h3>
+                        <h3>Backup time: 10/17/2023 23:48:19 UTC</h3>
+                        <h3>Detail Information:</h3>
+                        <div style="padding: 25px;">
+                            <h3>Name: HourlyBackup</h3>
+                            
+                            
+                            
+                        </div>
+                    </body>
+                </html>
+            
+--===============4710282437277442150==--

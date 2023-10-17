@@ -1,3 +1,4 @@
+import time
 # Import necessary functions and variables
 from helper import getDirectory, getLogInfo
 from sender import sendDataInEmail
@@ -15,26 +16,29 @@ def mainFn ():
     if not arrPath:
         # If arrPath is empty, send an error email and print an error message
         errorMsg = errorEnum.DIRECTORY_NOT_FOUND
-        sendDataInEmail(errorMsg, SENDER_EMAIL, ERROR_TYPE)
+        sendDataInEmail(errorMsg, SENDER_EMAIL, templateType=ERROR_TYPE)
         print(errorMsg.get('title'))
         return
     # Get log data from all found path
     data = getLogInfo(arrPath)
+    print(arrPath)
     
     if not data:
         # If log file is empty, send an error email and print an error message
         errorMsg = errorEnum.FILE_NOT_FOUND
-        sendDataInEmail(errorEnum, SENDER_EMAIL, ERROR_TYPE)
+        sendDataInEmail(errorEnum, SENDER_EMAIL, templateType=ERROR_TYPE)
         print(errorMsg.FILE_NOT_FOUND.get('title'))
         return
     # If data is available, print success message and send the email
+    for i in range(0, len(data)):
+        time.sleep(15)
+        sendDataInEmail(data[i], SENDER_EMAIL);
     print('Send Logs in Email Success')
-    sendDataInEmail(data, SENDER_EMAIL)
     
 
 try:
     mainFn()
 except Exception as e:
     print(f'Something went wrong: {e}')
-    sendDataInEmail({'title': 'Something went wrong' , 'msg': str(e)}, SENDER_EMAIL, ERROR_TYPE)
+    sendDataInEmail({'title': 'Something went wrong' , 'msg': str(e)}, SENDER_EMAIL, templateType=ERROR_TYPE)
 

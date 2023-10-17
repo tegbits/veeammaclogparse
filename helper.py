@@ -1,6 +1,4 @@
-import os
-import re
-import urllib.request
+import os, socket, re, urllib.request
 
 from constant.regexEnum import PATTERN_DIR, PATTERN_DATE
 from constant.constansEnum import TARGET_FILE, DEFAULT_START_PATH
@@ -41,6 +39,7 @@ def getLogInfo (arr):
         for currentPath in arr[key]:
             with os.scandir(currentPath) as files:
                 for file in files:
+
                     if (file.name.capitalize() == TARGET_FILE):
                         with open(os.path.join(currentPath, file.name), 'r', encoding="utf8") as fileData:
                             name = key if not(counter) else f'{key}({counter + 1})'
@@ -50,7 +49,7 @@ def getLogInfo (arr):
                                 # Processing for FULL information type
                                 for str in logInfo:
                                     if (re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
+                                        logStatus.append(extractJobStatus(str));
                                     if (re.findall(r'\[warn\]', str)):
                                         logWarning.append(str);
                                     if (re.findall(r'WARN', str)):
@@ -61,18 +60,20 @@ def getLogInfo (arr):
                                 # Processing for SHORT information type
                                 for str in logInfo:
                                     if (re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
+                                        logStatus.append(extractJobStatus(str));
                             else:
                                 # Processing for other information type
                                 for str in logInfo:
                                     if (STATUS_TYPE in TYPE_INFO and re.findall(r'JOB STATUS', str)):
-                                        logStatus.append(str);
-                                    if (WARNING_TYPE in TYPE_INFO and re.findall(r'\[warn\]', str)):
+                                        logStatus.append(extractJobStatus(str));
+                                    elif (WARNING_TYPE in TYPE_INFO and re.findall(r'\[warn\]', str)):
                                         logWarning.append(str);
-                                    if (WARN_TYPE in TYPE_INFO and re.findall(r'WARN', str)):
+                                    elif (WARN_TYPE in TYPE_INFO and re.findall(r'WARN', str)):
                                         logWARN.append(str)
-                                    if (ERROR_TYPE in TYPE_INFO and re.findall(r'ERR', str)):
+                                    elif (ERROR_TYPE in TYPE_INFO and re.findall(r'ERR', str)):
                                         logError.append(str)
+                                    else:
+                                        raise ValueError(F'INCORRECT TYPE_INFO: {",".join(TYPE_INFO)} Please change .env file')
                             # Add formatted information to the log list
                             log.append({
                                 'name': name,
@@ -84,9 +85,13 @@ def getLogInfo (arr):
                         counter += 1
                         break
     return log
-    
 
+def extractJobStatus(str):
+    match = re.search(r'JOB STATUS: (\w+)', str)
+    return match.group(1).capitalize() if match else None
+    
+# Get information to the hostname and hostip
 def getHostInfo():
-    hostName = os.uname().nodename
+    hostName = socket.gethostname()
     hostIp = urllib.request.urlopen('https://ident.me').read().decode('utf-8')
     return hostName, hostIp

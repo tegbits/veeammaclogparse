@@ -16,7 +16,7 @@
 			<string>/Library/Preferences/SystemConfiguration</string>
 		</array>
 		<key>execution_time</key>
-		<integer>5:00</string>
+		<integer>5:00</integer>
 		<key>StandartOutPath</key>
 			<string>tbits-macpro01@tbits-macpro01 VeeamMacReportingAgent % /usr/local/bin/python3 "/Library/Application Support/VeeamMacReportingAgent/programCronLog.log"</string>
 		<key>StandartErrorPath</key>

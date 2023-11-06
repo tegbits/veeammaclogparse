@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Label</key>
+		<string>com.task.send.email</string>
+		<key>Program</key>
+		
+		<key>ProgramArguments</key>
+		<array>
+			<string>/Library/Frameworks/Python.framework/Versions/3.12/bin/python3</string>
+			<string>"/Library/Application Support/VeeamMacReportingAgent/main.py"</string>
+		</array>
+		<key>WatchPaths</key>
+		<array>
+			<string>/Library/Preferences/SystemConfiguration</string>
+		</array>
+		<key>execution_time</key>
+		<integer>5:00</string>
+		<key>StandartOutPath</key>
+			<string>tbits-macpro01@tbits-macpro01 VeeamMacReportingAgent % /usr/local/bin/python3 "/Library/Application Support/VeeamMacReportingAgent/programCronLog.log"</string>
+		<key>StandartErrorPath</key>
+			<string>tbits-macpro01@tbits-macpro01 VeeamMacReportingAgent % /usr/local/bin/python3 "/Library/Application Support/VeeamMacReportingAgent/programCronErrorLog.log"</string>
+	</dict>
+</plist>

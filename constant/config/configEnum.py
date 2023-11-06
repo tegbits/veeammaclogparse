@@ -4,6 +4,7 @@ load_dotenv()
 
 SECRET_EMAIL = os.getenv('NO_REPLY_EMAIL') or 'test@gmail.com'
 SECRET_PASS = os.getenv('NO_REPLY_PASS') or 'adfa fasf fasf fafs'
+COMPANY_NAME = os.getenv('COMPANY_NAME') or 'Test Company Name'
 SENDER_EMAIL = os.getenv('SEND_EMAIL').split(',') or 'test@gmail.com'
 CC_EMAIL = os.getenv('CC_EMAIL').split(',') or []
 TYPE_INFO = os.getenv('TYPE_INFO').split('+') if os.getenv('TYPE_INFO') else ['FULL']

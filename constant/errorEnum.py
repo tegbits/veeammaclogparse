@@ -13,7 +13,7 @@ DIRECTORY_NOT_FOUND = {
 <p>5. If none of the above steps help, please seek assistance.</p>
 '''
 }
-FILE_NOT_FOUND: {
+FILE_NOT_FOUND = {
     'title': 'Don`t find file Job.log',
     'msg': '''<h4>Here are the next steps:</h4>
     
